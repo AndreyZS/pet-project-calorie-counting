@@ -2,6 +2,7 @@ package domain.service
 
 import cats.effect.MonadCancelThrow
 import domain.entity.{Account, AccountLogin, Entity, Test}
+import domain.entity.implicits._
 import doobie.Transactor
 import doobie.implicits._
 import doobie.util.fragment.Fragment
