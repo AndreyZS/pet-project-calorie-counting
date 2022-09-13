@@ -1,4 +1,4 @@
-package domain.entity
+package com.article.calorie.domain.entity
 
 sealed trait TypeMeat
 case object Breakfast extends TypeMeat

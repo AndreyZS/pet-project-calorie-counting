@@ -7,6 +7,9 @@ version := "1.0"
 val doobieVersion = "1.0.0-RC1"
 
 libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.1"
+
+libraryDependencies += "org.flywaydb" % "flyway-core" % "9.3.0"
+
 libraryDependencies ++= Seq(
   "org.typelevel" %% "cats-effect"      % "3.3.12",
   "org.tpolecat"  %% "doobie-core"      % doobieVersion,
