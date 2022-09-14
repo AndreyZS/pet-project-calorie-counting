@@ -11,8 +11,7 @@ import cats.implicits._
 import java.time.LocalDate
 import java.util.UUID
 
-final case class Account(id: UUID, login: AccountLogin, heft: AccountHeft, dob: LocalDate)
-
+case class Account(id: UUID, login: AccountLogin, heft: AccountHeft, dob: LocalDate)
 object Account {
 
   type AccountLogin = String Refined NonEmpty
@@ -23,13 +22,13 @@ object Account {
   final object AccountHeft extends RefinedTypeOps[AccountHeft, Double] with CatsRefinedTypeOpsSyntax
 
   object implicits {
-    implicit val getAccountLogin: Get[AccountLogin] = Get[String].map(AccountLogin.unsafeFrom)
-    implicit val getAccountHeft: Get[AccountHeft] = Get[Double].map(AccountHeft.unsafeFrom)
+    implicit val getAccountLogin = Get[String].map(AccountLogin.unsafeFrom)
+    implicit val getAccountHeft  = Get[Double].map(AccountHeft.unsafeFrom)
 
     implicit val putAccountLogin: Put[AccountLogin] = Put[String].contramap(_.value)
     implicit val putAccountHeft: Put[AccountHeft]   = Put[Double].contramap(_.value)
 
-    implicit val read = Read[(UUID, String, Double, LocalDate)].map {
+    implicit val readAccount = Read[(UUID, String, Double, LocalDate)].map {
       case (id, login, heft, dob) => for {
           l <- AccountLogin.from(login)
           d <- AccountHeft.from(heft)
